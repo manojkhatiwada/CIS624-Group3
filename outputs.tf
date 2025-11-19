@@ -15,6 +15,6 @@ output "nic_id" {
 }
 
 output "owners_tag" {
-  value = join(", ", var.owners)
+  value       = join(", ", var.owners)
   description = "Comma-separated list of owners included in the owners tag"
 }

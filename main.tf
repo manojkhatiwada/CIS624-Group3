@@ -9,11 +9,14 @@ terraform {
   }
 }
 
+# Manoj Notes Grab the Subscription Id from your Azure account and replace here
+
 provider "azurerm" {
   features {}
+  subscription_id = var.subscription_id 
 }
 
-# Resource Group
+# Manoj Notes - This section is for Resource Group
 resource "azurerm_resource_group" "rg" {
   name     = var.resource_group_name
   location = var.location
@@ -25,7 +28,7 @@ resource "azurerm_resource_group" "rg" {
   )
 }
 
-# Virtual Network
+# Manoj Notes - This section is for Virtual Network
 resource "azurerm_virtual_network" "vnet" {
   name                = var.vnet_name
   address_space       = [var.vnet_address_space]
@@ -39,7 +42,7 @@ resource "azurerm_virtual_network" "vnet" {
   )
 }
 
-# Subnet
+# Manoj Notes - This section is Subnet
 resource "azurerm_subnet" "subnet" {
   name                 = var.subnet_name
   resource_group_name  = azurerm_resource_group.rg.name
@@ -47,7 +50,7 @@ resource "azurerm_subnet" "subnet" {
   address_prefixes     = [var.subnet_prefix]
 }
 
-# Network Interface
+# Manoj Notes - This section is for Network Interface
 resource "azurerm_network_interface" "nic" {
   name                = var.nic_name
   location            = azurerm_resource_group.rg.location

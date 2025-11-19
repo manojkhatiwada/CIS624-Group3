@@ -1,0 +1,6 @@
+# Ignore directories directory (at repo root)
+Manoj backup/
+.terraform/
+
+# ignore the azurerm provider binary (path under .terraform) because GitLub has filze size limit
+.terraform/providers/registry.terraform.io/hashicorp/azurerm/4.53.0/darwin_arm64/terraform-provider-azurerm_v4.53.0_x5

@@ -9,6 +9,13 @@ variable "resource_group_name" {
   default     = "rg-team-project"
 }
 
+variable "subscription_id" {
+  description = "Azure subscription ID"
+  type        = string
+  default     = "manoj-notes-replace-me"
+}
+
+
 variable "location" {
   description = "Azure region"
   type        = string
