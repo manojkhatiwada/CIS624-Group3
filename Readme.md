@@ -1,62 +1,60 @@
+# Deploy HTML Page on Azure VM with Terraform
+
+## Prerequisites
+
+1. Install Azure CLI and login:
+```bash
 az login
+```
 
+2. Generate SSH key (if you don't have one):
+```bash
+ssh-keygen -t rsa -b 4096
+cat ~/.ssh/id_rsa.pub
+```
+
+3. Copy the SSH public key and paste it in `main.tf` at line 25
+
+## Commands to Run
+
+### 1. Initialize Terraform
+```bash
 terraform init
+```
 
-terraform plan -var-file="terraform.tfvars"
+### 2. Preview what will be created
+```bash
+terraform plan
+```
 
-terraform apply -var-file="terraform.tfvars" -auto-approve
+### 3. Deploy the infrastructure
+```bash
+terraform apply
+```
+Type `yes` when prompted.
 
-terraform output
+### 4. Get the website URL
+After deployment, Terraform will show the public IP. Open the URL in your browser:
+```
+http://PUBLIC_IP_ADDRESS
+```
 
+### 5. Destroy resources when done
+```bash
+terraform destroy
+```
+Type `yes` when prompted.
 
-![alt text](./Screenshots/image-0.png)
+## What Gets Created
 
-![alt text](./Screenshots/image-1.png)
+- Resource Group: `manoj-web-rg`
+- Virtual Machine running Ubuntu 22.04
+- Nginx web server
+- Your custom HTML page from `manoj.html`
+- All networking (VNet, Subnet, Public IP, NSG)
 
-![alt text](./Screenshots/image-2.png)
+## Files
 
-![alt text](./Screenshots/image-3.png)
-
-![alt text](./Screenshots/image-4.png)
-
-![alt text](./Screenshots/image-5.png)
-
-![alt text](./Screenshots/image-6.png)
-
-![alt text](./Screenshots/image-7.png)
-
-![alt text](./Screenshots/image-8.png)
-
-az network nic show --name nic-myvm --resource-group CIS624-week6 --output table
-
-
-az network nic show --name nic-myvm --resource-group CIS624-week6 --query "ipConfigurations[0].privateIpAddress" --output tsv
-
-![alt text](./Screenshots/image-9.png)
-
-
-# Verifying Subnet Association
-az network nic show --name nic-myvm --resource-group CIS624-week6 --query "ipConfigurations[0].subnet.id" --output tsv
-
-![alt text](./Screenshots/image-10.png)
-
-
-terraform show | grep -A 10 "azurerm_network_interface"
-![alt text](./Screenshots/image-11.png)
-
-
-![alt text](./Screenshots/image-12.png)
-
-![alt text](./Screenshots/image-13.png)
-
-
-![alt text](./Screenshots/image-14.png)
-
-![alt text](./Screenshots/image-15.png)
-
-
-![alt text](./Screenshots/image-16.png)
-
-![alt text](./Screenshots/image-17.png)
-
-
+- `main.tf` - Terraform configuration (includes VM setup script)
+- `manoj.html` - Your HTML page
+- `README.md` - This file
