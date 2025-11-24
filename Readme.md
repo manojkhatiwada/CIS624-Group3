@@ -14,6 +14,13 @@ az login
 az account show --query id -o tsv
 ```
 
+2b. Validate if resources exist
+
+```bash
+az group show --name manoj-web-rg
+```
+
+
 3. Update `main.tf`:
    - Line 13: Add your subscription ID
    - Line 23: Change the admin password (optional)

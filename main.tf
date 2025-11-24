@@ -10,13 +10,13 @@ terraform {
 
 provider "azurerm" {
   features {}
-  subscription_id = "REPLACE_WITH_YOUR_SUBSCRIPTION_ID"
+  subscription_id = "dd4cbbe6-d853-40e0-94da-74b819941acc"
 }
 
 # Local variables
 locals {
   resource_group_name = "manoj-web-rg"
-  location            = "East US"
+  location            = "northcentralus"
   prefix              = "manojweb"
   vm_size             = "Standard_B1s"
   admin_username      = "manoj_azureuser"
